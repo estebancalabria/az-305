@@ -55,15 +55,9 @@ graph TD
 * Subscriptions
 * Costos por unidad
 
---
-
---
+---
 
 ##  ¿De qué formas podría EstebanCalabria Industries organizar sus **suscripciones y management groups**
-
-Perfecto, te lo dejo **listo para pegar en tu `.md`**, claro y usable en clase.
-
----
 
 ## 📊 Opciones
 
