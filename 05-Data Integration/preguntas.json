@@ -1,0 +1,24 @@
+[
+  {
+    "pregunta": "¿Cuál es el principal beneficio de utilizar Azure Databricks (SKU Premium) con Credential Passthrough conectado a un Data Lake?",
+    "respuestas": [
+      {
+        "texto": "Manipular datos del Data Lake respetando RBAC",
+        "correcta": true
+      },
+      {
+        "texto": "Proporcionar almacenamiento escalable para datos no estructurados.",
+        "correcta": false
+      },
+      {
+        "texto": "Tomar datos desde múltiples fuentes hacia el Data Lake de forma orquestada.",
+        "correcta": false
+      },
+      {
+        "texto": "Visualizar datos mediante paneles interactivos y reportes.",
+        "correcta": false
+      }
+    ]
+  },
+  
+]
