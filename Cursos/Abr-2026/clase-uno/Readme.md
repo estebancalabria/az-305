@@ -246,10 +246,117 @@ Ventas
    * Automatizacion
    * IAC
 
-
 # Modulo 2 - Opciones de Computo
 
 ## Eleccion de Opciones de Computo
 
 <img width="808" height="536" alt="image" src="https://github.com/user-attachments/assets/58684541-e2ab-4736-8fdb-35f051b1735a" />
+
+* Luego de elegir la opcion de computo
+* Evlualuarla de acuerdo al WAF
+   * 
+
+## Virtual Machines
+
+* No solo para el despliegue de Apps sino para replicar el entorno OnPrem pero la nube
+
+* Seguridad
+   * Minimo un NSG
+   * Resposabilida de Seguridad muy en manos del que administra
+* Confiabilidad / Disponibilidad
+   * Regiones   <--->  Paired Region
+      * Availability Zones
+         * Availability Set
+            * Fault Domain
+            * Update Domain
+* Optimizacion Costo
+      * Es un trade off con las otras opciones
+* Performance
+      * Tiempos de Cool down cuando se reinician
+      * Dependen de un load Balancer
+      * El escalamiento es mas explicito y no tan automatico como en otros servicios
+* Operaciones
+   * Mas ovehead administrativo
+   * Mas control
+
+
+
+## App Service
+
+* Seguridad
+   * Prestar atencion a mi app, menos a la infra
+* Confiabilidad
+   * LA plataforma ofrece muchas opcions
+* Optimizacion Costo
+* Performance
+   * Excalado Automatico
+      * https://www.youtube.com/watch?v=NgAFCEh80UI&t=6s
+      * Horizontal
+         * Mas instancias del mismo servicio
+      * Vertical
+         * Contratar un servicio mas potente
+* Operaciones
+
+
+## Operaciones Batch
+
+* Azure Batch
+* Web Job (se ejecuta en el contexto mismo del APP Service)
+
+## Soluciones Basadas en Contenedores
+
+* Comparacion con VM
+   * Inician mas rapido
+   * Consumen menos recursos
+   * Mas portables
+   * No es una buena practica tocarlos cuando arrancan (no tengo el control del entorno como en una VM)
+   * Cada vez que reinicia empieza desde Cero
+
+### Container Intances
+
+* Opcion mas sencillas
+* Menos ovehead administrativo
+   * No hay que abrir puertos se maneja solo
+* Muchisimas menos opciones de escalamiento
+* No esta tan pensado en orquestacion de servicios
+
+### Container Apps
+
+* Solucion de contenedors mas completa
+* Mas responsabilidad administrativa
+   * Hay que configurar la red, los puertos
+* Mas opciones de escalamientos y orquestacion (KEDA)
+
+### Kubernetes
+
+* Maximo control y flexibilidad
+* Pensados para arquitecturas microservicios
+* Ecosistema enorme
+   * Un Azure dentro de un Azure
+* Alta complejidad Operativa
+   * Considerar la capacitacion
+   * Muchas cosas de arquitectura que vemos a nivel azure las debemos replicar en Kubernets
+* Sistemas Criticos
+* Costo Mayor
+
+### Containers en AppService
+
+* Muy Facil....
+* Tiene el mismo mecansimo administrativo que AppService
+* No esta tan pensado para orquiestacion de servicios pero idel para apps en containers
+
+## Function Apps
+
+* Deplegar funciones tipo API en forma independiente
+* Backend
+* Pago por Uso
+   * Pagas las funcion cuando se ejecuta
+   * Es SUMAMENTE util a la hora de ahorrar costos
+* Pogramar patrones complejos con las durable functions
+   * https://learn.microsoft.com/en-us/azure/azure-functions/durable-functions/durable-functions-overview
+* Facilidad y control absoluto en despliegue
+* Algunos temas con versiones pueden aparecer
+
+> [!NOTE]
+> No desestiamarla.
 
