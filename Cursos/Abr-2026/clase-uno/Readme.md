@@ -65,6 +65,32 @@
 
 ### Plan
 
+* Realizamos un invetario de lo que tenemos
+* Realizamos un invetario de lo que queremos
+* Subdivimos el inventario en partes
+* Priorizamos el orden en migrar
+   * Por prioridad estragica
+   * Por impacto
+* Evluamos lo necesario para capacitar al equipo en lo nuevo
+* Planificamos la implmentacion por etapas
+      * Etapas mas cortas... mas control
+   * 6R
+      * Refactor
+      * Rehost
+      * Reachitect
+      * Rebuild
+      * Replace
+      * Retire
+ 
+* Caso de Ejemplo
+
+* Tengo una APP On premise que quiero migrar a la nube
+   * Refactor <<<
+   * Rehost <<<<  VM en la nube
+   * Reachitect  <<< Pasar la arquitectura de un Iass un Paas  <<< Az204
+   * Rebuilt <<< La paso a un APP Service
+   * Replace <<< Remplazo la VM y el OnPremise por el AppService
+   * Retiro << La VM y el on Premise
 
 # Gobernanza y costos
 
@@ -111,7 +137,84 @@
    * Trade-off
        * Mas Granularidad ---> Mas Control + Mas Complejidad
        * Menis Granularidad ----> Mas Simple y menos Governance
-   
+
+## Uso de IA
+
+* Suelo utlizar la IA de la siguiente manera
+   * Le pego el Diagrama de arquitectura que hice con draw.io
+   * Armo un prompt de esta manera
+  
+```
+Contexto : "EstebanCalabria Industries cuenta con dos unidades de negocio principales:
+
+Apparel (Indumentaria)
+Sporting Goods (Artículos deportivos)
+Cada unidad de negocio está compuesta por tres departamentos:
+
+Desarrollo de Producto
+Marketing
+Ventas
+"
+1) Analizame Trade-off de mi arquitectura propuesta
+2) Evaluame aspectos que tenga que considerar y pueda estar teniendo en cuenta
+3) Dame alternativas distintas y decime pro y contras en cada caso. Alineame tu repuesta con los frameworks CAF (Cloud Adoption Framework) y WaF (Well Achitect Framework)
+4) Dame preguntas adicionales que deba hacerme para refinar la arquitectura propuesta
+```
+
+* Me tiro esta propuesta
+
+> https://copilot.microsoft.com/conversations/join/DgAukZv1gV1VJV2jpynUf
+
+> [!NOTA]
+> Otra propuesta CON IA
+> Pasarle el diagrama de su arquitectura como la tienen y lo mismo pedir tradeOffs, alternativas, alineacion con CAF y WAF y preguntas
+
+* Generacion de propuestas iniciales con DiagramGPT
+> https://www.eraser.io/diagramgpt
+
+> [!NOTA]
+> Validar todo lo que hace la IA no siempre es optimo y tiene el criterio
+
+## Policy
+
+* La definicion de la policy la puedo describir con un json
+* No tengo que conocer el lenguaje ya que copilot me permite generar policies como la que sigue
+* "Restringir la creacon re Resource Groups solo a lso que empiecen con el prefijo rg-
+
+```json
+{
+  "properties": {
+    "displayName": "Los Resource Groups deben comenzar con el prefijo rg-",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "Obliga a que todos los Resource Groups comiencen con el prefijo rg-",
+    "metadata": {
+      "category": "Resource Groups"
+    },
+    "version": "1.0.0",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+          },
+          {
+            "not": {
+              "field": "name",
+              "match": "rg-*"
+            }
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}
+```
 
 ## Cost Management + Billling
       * Buggets
@@ -128,3 +231,25 @@
 ## Subcripciones
       * OJO: Evaluar no tener una subscripcion para todo sino separarla por entorno
    * Resource Tagging
+
+---
+
+
+# WAF (Well Achiteted Framework)
+
+* Seguridad
+* Confiabilidad
+* Optimizacion Costo
+* Performance
+* Operaciones
+   * Monitoring
+   * Automatizacion
+   * IAC
+
+
+# Modulo 2 - Opciones de Computo
+
+## Eleccion de Opciones de Computo
+
+<img width="808" height="536" alt="image" src="https://github.com/user-attachments/assets/58684541-e2ab-4736-8fdb-35f051b1735a" />
+
