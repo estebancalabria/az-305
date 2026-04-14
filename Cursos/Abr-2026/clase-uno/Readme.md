@@ -279,8 +279,6 @@ Ventas
    * Mas ovehead administrativo
    * Mas control
 
-
-
 ## App Service
 
 * Seguridad
@@ -360,3 +358,8 @@ Ventas
 > [!NOTE]
 > No desestiamarla.
 
+---
+
+# Encuesta
+
+> https://forms.gle/5RWreoaT6mui9FNE9
