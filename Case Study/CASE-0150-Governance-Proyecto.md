@@ -24,8 +24,8 @@ Cada unidad de negocio está compuesta por tres departamentos:
 graph TD
     A[EstebanCalabria Industries]
 
-    A --> B[Apparel (Indumentaria)]
-    A --> C[Sporting Goods (Artículos deportivos)]
+    A --> B[Indumentaria]
+    A --> C[Artículos deportivos]
 
     B --> B1[Desarrollo de Producto]
     B --> B2[Marketing]
