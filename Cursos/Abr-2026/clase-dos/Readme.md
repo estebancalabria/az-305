@@ -88,6 +88,8 @@
 * Utilizar la IA para que me ayude a pensar (darle a vueltas al asunto) para encontrar o la opcion mas adecuada o las preguntas que me faltan hacer
 * LA Ia me tiro este analisis
     * https://copilot.microsoft.com/conversations/join/3GfkGi32ZoX5VSL1fd5rW
+
+---
   
 # Storage
 
@@ -221,6 +223,177 @@
     * Blob Versioning
 * No mezclarlo con lo del Activity Log
 
+---
+
 # Base de Datos
 
-# Integracion de Datos
+* Datos Estructurados (todos respetan un esquema)
+   * Azure SQL Database
+   * Azure Postgres Database
+* Datos Semi-Estructurados
+   * Azure CosmoDB
+* Datos Semanticos
+   * Azure Search
+ 
+* Decidir una carga de trabajo para una base de datos
+   * Revisar la documentacion para actualizarse en los limites de cada servicio antes de tomar una decision
+   * Hacer un relevamiento sobre la carga re trabajo de la base de datos actual
+      * Size de la DB
+      * Uso de CPU y de MB Tranferencias
+      * Patrones de uso (si hay horarios en que la base de datos se usa mas que otra)
+      * Cantidad de base datos
+* Para evaluar la migracion tenemos el
+   * Azure Database Migration Service
+   * Me conviene pagar solo cuando la base funciona o tenerla disponible siempre?
+   * Quiero costo predecible o pago por uso?
+
+## Azure SQL Database
+
+### Opciones
+
+* Azure SQL en una VM
+   * Lift and Shift
+   * Pude ser una buena opcion para evaluar costos y tener base-line
+   * Aplicaciones legacy que usan cuestiones de la maquina local o opciones de versiones vieja de SQL server que en principio  no andan en Azure
+   * En ambientes de desarrollo muchas veces simplifia instalar un SQLExpress << Ojo compatibilidad si despues queres migrar
+* Azure SQL Managed Instances
+   * Alta compatibilidad con SQL Servier on premise
+   * Integracion con Netgoweking
+   * Aplicacion de Actualizaciones por Microsoft en tema segudidad
+   * Contra:  Ver costos
+   * Puede escalar automaticamente
+* Azure SQL
+   * Plataforma completamente administrada
+   * Tiene todos los chicnes
+   * Trade Off: Se debe considerar todas las opciones que tiene y el costo administrativo (DP-300)
+* Elastix Pools
+   * Conjunto de Varias bases de datos con cargas variadas que se distrubuyen los recuros
+
+## Pricing Models (Optimizacion de costos)
+
+* DTU
+   * Combina en una sola unidad CPU, Memoria, E/S
+   * Opciones
+      * Basic 
+      * Strandad
+      * Premium
+   * Pros
+      * Mas Facil de administrar y configurar
+      * Costos Predecibles
+   * Cons
+      * Escalaiento es mas limitado
+* VCore
+   * Opciones
+      * General Purpose
+         * Provisioned
+         * Serverless
+      * Hybperscale
+         * Opciones
+            * Provisioned
+            * Serverless
+         * Observicaciones
+            * Aca miramos mucho el tamanio. Esta preparado para base de datos GRANDE (Mas 1/2 T)  (Max 128 T)
+            * Base De muchas transacciones con varias replicas de lectura
+            * No estamos optimizando para costos
+      * Buisiess Critical
+         * Base de datos seguras con gran capacidad de recuperacion de desastre
+   * Se ajusta a las necesidades del negocio en uso
+   * Escenarios de Alto Rendimiento y flexibilidad
+   * Analizarlo en funcion de :
+      * https://azure.microsoft.com/en-us/pricing/offers/hybrid-benefit
+      * https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-create?tabs=portal1%2Capi1%2Capi2
+   * Contras
+      * Si el uso es bajo no conviene  o Partrones de uso irregulares no conviene provisioned
+   * Serverless es Pay You go
+    
+## Security
+
+* Formas de Accesos
+   * Autenticacion por SQL Server Tradiciona
+      * Usuario / Password
+   * Autenticacion por Entra ID
+
+## Resilencia
+
+* Alta diposnibiliad : Backup automatico mismas decisiones que en el Storage Account LRZ,...
+* Auto-Failover Groups : Otro endpoint en otra region para asegurar la continuidad de negocio
+  
+## Novedades
+
+* Base de datos hoy en tiempos de IA
+   * https://marketingassets.microsoft.com/gdc/gdcIsheL7/original?ocid=eml_pg512394_gdc_comm_az&mkt_tok=MTU3LUdRRS0zODIAAAGhLvFs3CIivfRNKxFBkg_Gg-H0sKqcnBiuHmF55TUKMdrRSr3IyJFfB7IXgUOj3uCpATKzL6jiLOxYCUWVsgrsRNgmm-5If_bPGiTEWL1_Uf3DLHUzgiUJNuo
+
+## Seguridad
+
+* Transparent Data Encryption
+   * Los datos de la base y el backup se guardan encryptados
+      * Trade-Off con Performance
+      * Mas consumo, sube el uso CPU
+* Auditoria
+   * Podemos marcar que columnas de la base de datos son sensibles para poder consultar en auditoria cuando se hacen querys sobre esos datos
+  
+
+## Caso de Estudio
+
+### 🏢 Contexto
+
+* **EstebanCalabria Industries** está migrando la base de datos de su sitio web público a Azure, junto con el front-end que se desplegará inicialmente en **2 regiones** para redundancia.
+* La base de datos contiene el **catálogo de productos y los pedidos en línea**.
+* Actualmente corre en un **Microsoft SQL Server Always On Availability Group** en on-premises.
+* La empresa busca mejorar **alta disponibilidad, rendimiento y seguridad**, cumpliendo buenas prácticas de arquitectura en la nube.
+
+### 📋 Situación Actual
+
+* **Alta disponibilidad**: La base de datos es crítica; cualquier caída puede generar pérdida de ventas o confianza del cliente.  
+* **Rendimiento web**: Realizar pedidos funciona bien, pero navegar y buscar productos con muchas entradas es “lento”.  
+* **Seguridad**: Preocupación por información personal y financiera; se requiere cumplir con estándares de la industria.  
+
+### Propuesta de Solucion
+
+<img width="729" height="569" alt="image" src="https://github.com/user-attachments/assets/eeb8281f-de29-4713-b2d6-4edac27c611a" />
+
+### Vamos a pensarla con la IA
+
+```
+Tengo este caso de estudio : "### 🏢 Contexto
+
+* **EstebanCalabria Industries** está migrando la base de datos de su sitio web público a Azure, junto con el front-end que se desplegará inicialmente en **2 regiones** para redundancia.
+* La base de datos contiene el **catálogo de productos y los pedidos en línea**.
+* Actualmente corre en un **Microsoft SQL Server Always On Availability Group** en on-premises.
+* La empresa busca mejorar **alta disponibilidad, rendimiento y seguridad**, cumpliendo buenas prácticas de arquitectura en la nube.
+
+### 📋 Situación Actual
+
+* **Alta disponibilidad**: La base de datos es crítica; cualquier caída puede generar pérdida de ventas o confianza del cliente.  
+* **Rendimiento web**: Realizar pedidos funciona bien, pero navegar y buscar productos con muchas entradas es “lento”.  
+* **Seguridad**: Preocupación por información personal y financiera; se requiere cumplir con estándares de la industria.  " Te paso mi propuesta quiero
+1) Verificar si cumple con lo requerimientos solicitados
+2) Analizar que informacion me conviene relevar para la toma de decisiones en escenario y que preguntas me debo hacer
+3) Enmarcar la solucion dentro del contexto del WAF
+4) Dame los tradeofs de la solucion propuesta
+5) Proponer otra arquitectura altenativa evaluando pros y contras
+```
+
+* La IA me da un insight bien util
+   * https://copilot.microsoft.com/conversations/join/Gv1bw83jtMsEKJ1Qpa1US
+
+
+## Base de datos No SQL
+
+* Paraleismo de usuario MASIVO
+* Respuestas rapidas sobre bases de datos gigantes
+* Productos de uso masivo a nivel mundial
+* Puedo compromer el ACID de las transacciones de las bases de datos en funcion de que funcione rapido
+   * Banco ---> Me tiene que dar el monto exacto en un contexto donde se hacen muchas transacciones en simultuaneo
+         * Espera a resolver todo antes de darte el saldo
+        * Caracteristicas de las bases de datos relacionales
+   * Otros negocios : PRiorizo darle una informacion rapida al cliente (Acpetando que puede haber impresiciones) priorizando rapide  (No ACID)
+* Factores Arquitecturales a considerar
+   * Replicadion en todas partes del mudno
+   * Grado de no respetar ACID que estoy dispuesto a tolerar (Transaccionalidad)
+   * Datos semi estructurados (JSON)
+
+> [!NOTA]
+> Tengo un hyperscale muy caro muy grande, con muchas consultas que se usa desde todas partes del mundo
+> No me convendra mirar para el lado de CosmoDB?
+
