@@ -200,6 +200,19 @@
 
 * Poder habilitar el Soft Delete
 * Resource Group lock Storage Account
+* Acceso a los Storage Account
+   * Acceso por RBAC
+   * Por clave de Acceso <<<<<< DESDERCOMENDADO
+         * Si las usas Rotarlas
+         * Guardarlas en el Key Vault
+  * SAS (Shared Access Signature)
+     * Permiten un acceso temporal y controlado    
+  * Configurar reglas de firewall (Ej x IP en la parte de networking)
+
+* Para Usarlo
+   * AzCopy
+   * Azure Storage Explorer
+      * https://azure.microsoft.com/es-es/products/storage/storage-explorer
 
 ## Operation Excelence 
 
