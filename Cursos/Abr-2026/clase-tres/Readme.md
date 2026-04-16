@@ -141,7 +141,7 @@
 
 <img width="1076" height="215" alt="image" src="https://github.com/user-attachments/assets/c8d73f15-0c06-49ca-a5fa-6434b6f41f4d" />
 
-## Caso practico
+## Caso practico Event Grid y Service Bus
 
 🏢 Contexto
 EstebanCalabria Industries quiere actualizar su sitio web para que los clientes puedan subir fotos de los productos que adquirieron.
@@ -170,6 +170,56 @@ La empresa desea minimizar costos usando soluciones serverless y pagar solo por 
 
 <img width="1201" height="408" alt="image" src="https://github.com/user-attachments/assets/869775d6-beed-4885-8731-a50dc8e2d098" />
 
+> [!NOTA]
+> Muchas veces cuestiones de arquitectura donde evaluamos que la soluciones es escalar un servicio, muchas veces la respues viener por otro lado y podes optimizar costos (desde el WAF) analizando opciones a nivel de aquitectura antes que de escalado.
+
+## Service Bus. Caso practico
+
+<img width="838" height="379" alt="image" src="https://github.com/user-attachments/assets/73c32d27-c2fb-40b0-abf1-21b80c035413" />
+
+* La aplicacion de Facturacion esta saturada, se llama desde muchos lugares y tiene cuello de botella. Muchas veces se cuelta
+* Se escala y el costo de escalado esta subiendo mucho
+* Las reglamentaciones hacen que la aplicacion de facturacion deba actualizarse todo el tiempo e implica recompilar tambien la de pedidos
+* El dia de maniana se necesita incorporar otra app de delivery en el proceso sin depender de modificar la app de pedidos
+* Tengo dos aplicaciones que terminan estando altamente acopladas
+* 
+Solucion Propuesta
+
+<img width="851" height="388" alt="image" src="https://github.com/user-attachments/assets/e33e5d65-bfaa-4c16-a687-0cd651bcefcd" />
+
+
+# Caso practico Event Hub
+
+* Event Hub
+   * Streaming de Eventos Masivo (Varios eventos por segundo)
+   * Telemetria en tiempo Real
+   * Analitica en timempo Real
+   * Millones de Eventos por segundo
+   * Relacionado con
+      * Iot Hub
+      * Stream Analytics
+   * Un regulador de ritmo para que no colapsen los sistemas
+
+ * Ejemplos
+    * LA final de bailando por un suenio (resultados poco verificables)
+       * Queres ver en tiempo real la votacion
+    * El registro de trafico por las cabinas de peajes
+
+* Escenario Propuesto
+  
+<img width="933" height="227" alt="image" src="https://github.com/user-attachments/assets/0899e608-2046-4fcf-9e40-f9282854dd41" />
+
+* Para este escenario existe Event Hub
+
+<img width="1047" height="209" alt="image" src="https://github.com/user-attachments/assets/92265bd3-2fe3-4f4f-bb05-b277cf462713" />
+
+### Escenearios de Telemetria en tiempo real
+
+<img width="864" height="367" alt="image" src="https://github.com/user-attachments/assets/756251d5-4b5d-4d07-ae1e-03acbd894831" />
+
+* En estos escenarios tambien se usa el Event Hub
+
+--
 
 ## Networking en en contexto de Arquitectura
 
