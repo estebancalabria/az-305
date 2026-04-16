@@ -6,6 +6,8 @@
 * La empresa considera que las imágenes de clientes ayudan a aumentar confianza y conversión.  
 * Ya existe una **API interna** que realiza el escaneo de las imágenes para detectar contenido que pueda ser inapropiado o generar problemas legales.  
 * Se busca una solución **serverless**, escalable y de bajo costo que pueda manejar picos de carga y notificar al cliente una vez que su imagen sea aprobada.
+* Una vez que la foro esta aprobada voy a guardar su descripcion y ubicacion en mi base de datos de productos
+* Voy a mandar un correo para avisarle al usuario que su imagen se proceso con exito.
 
 ---
 
