@@ -3,7 +3,6 @@
 | Modelo | Tier | Submodelo | Hardware | Replicación / Failover Group | Escalamiento | Costo Normalizado | Caso de uso |
 |--------|------|-----------|----------|-------------------------------|--------------|-------------------|-------------|
 | DTU | Basic | N/A | Fijo | Sin réplica | No | 1 | Dev/Test, cargas mínimas |
-| DTU | Basic | N/A | Fijo | Con réplica | No | 2 | DR barato, baja criticidad |
 | DTU | Standard S0 | N/A | Fijo | Sin réplica | No | 2 | Web apps pequeñas |
 | DTU | Standard S0 | N/A | Fijo | Con réplica | No | 4 | DR simple, cargas moderadas |
 | DTU | Premium P1 | N/A | Fijo | Sin réplica | No | 110 | OLTP crítico, baja latencia |
@@ -28,3 +27,4 @@
 | vCore | Business Critical | Provisioned | M-series | Con réplica | Sí | 1200 | HA + memoria extrema |
 | vCore | Hyperscale | Provisioned | Gen5 (Fijo) | Sin réplica | Sí | 81 | Bases enormes, crecimiento rápido |
 | vCore | Hyperscale | Provisioned | Gen5 (Fijo) | Con réplica | Sí | 162 | Lecturas masivas, scale‑out |
+
