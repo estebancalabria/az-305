@@ -221,11 +221,80 @@ Solucion Propuesta
 
 --
 
+## Api Management
+
+* Microservicios, API backend
+   * Monitoring
+   * Limite de uso
+   * Autenticacion
+   * Vesionado
+   * Cache
+   * El despliegue en varios dominios disintos
+      * https://learn.microsoft.com/en-us/azure/api-management/api-management-policies#authentication-and-authorization
+* Ya sea desplegando una api en
+   * App Service
+   * Kubernetes
+   * Function App
+
+* El api management resuelve todas las cuestiones transversales (monitoreo, autenticacion) en un sericio
+* Es un proxy que intecepta los request http y le aplica ciertas reglas (monitoring, autenticacion, etc)
+
+* Antes
+
+<img width="711" height="496" alt="image" src="https://github.com/user-attachments/assets/5f519c1f-43bf-4202-8f13-f4a0a5485eb7" />
+
+* Problemas
+   * Dominions distintos
+   * Logica de auth distribuida
+      * Que pasa si el dia de maniana quiero implenentar Entra ID para todos?
+   * Logica de Log independiente por proyecto
+   * Tengo cuestiones transversales replicada en los 3 proyectos
+
+* Despues
+
+<img width="889" height="497" alt="image" src="https://github.com/user-attachments/assets/b77112bb-2a88-4137-b672-70bfc7ea21db" />
+
+# Networking
+
+## Contexto
+
+
+<img width="588" height="704" alt="image" src="https://github.com/user-attachments/assets/93580d4b-9800-4ff3-bcf1-e1151f6755ad" />
+
+* En este diagrama puedo ver un ejemplo de arquitectura de red tradicional
+   * Net
+   * Subnet
+   * NSG
+   * VNet Peering (Conectar dos VNet)
+   * VPN Gateway (en su propia subnet)
+
+## Exscenario
+
+* Despliego un APP Service y un Api Management sin definir/preocuparme por la parte de las redes
+
+<img width="629" height="322" alt="image" src="https://github.com/user-attachments/assets/22ff8fe0-70ce-4006-a74a-b9dbab23aa0a" />
+
+* Rieggos
+   * Que aprovechen un exploit de la app
+      * SQL Injection
+   * Forzar carga sobre una app para que escale automaticamente
+      * Mas Costo
+      * Ataque DDos para que la app se sature
+
+### WAF (Web Application Firewall)
+
+* Front Door
+      * Analiza el trafico de Internet a Mi red
+      * Detectas vulnerabilidades habituales
+              * Un request donde en el body le pones 'OR 1=1' <<< LO Bloquea << SQL Inyection
+              * 1000 veces el mismo request en 1 minuto, 1 primero pasa, los 999 devuevle un 403
+* Aplication Gateway
+      * WAF pero para la red privada privado
+
+
 ## Networking en en contexto de Arquitectura
 
-
-
-# Auth
+<img width="1028" height="509" alt="image" src="https://github.com/user-attachments/assets/28053588-9131-4583-b6c4-4c7eb68cd850" />
 
 
 
