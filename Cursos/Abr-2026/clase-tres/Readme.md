@@ -1,5 +1,5 @@
 # Clase Tres - 16 de Octubre del 2026
-
+ 
 # Repaso Ejecurito
 
 * Caso de estudio de Compute
