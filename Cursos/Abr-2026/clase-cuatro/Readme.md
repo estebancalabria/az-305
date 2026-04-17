@@ -3,11 +3,11 @@
 # Repaso con valor agregado
 
 * Networking (Relacion con Aplicaciones y Seguridad)
-      * Si alguien abre un puerto en una ip publica aparece en   =====>   ???
-      * WAF
-          * Front Door (A nivel Mundial / CDN)
-          * Application Gateway - WAF/LB (A nivel conectividad en nuestra VNET)
-          * DDos (Lo menciono ahora no lo mencione antes)
+ * Si alguien abre un puerto en una ip publica aparece en   =====>   ???
+ * WAF
+     * Front Door (A nivel Mundial / CDN)
+     * Application Gateway - WAF/LB (A nivel conectividad en nuestra VNET)
+     * DDos (Lo menciono ahora no lo mencione antes)
 * Integracion
   * Datos
       * Almacenamiento
