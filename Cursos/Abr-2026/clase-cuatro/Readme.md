@@ -49,6 +49,36 @@
 * Metodologico
   * Definida la estragia de Monitoreo
 
+### Vision Arquitecural de Monitoring
+
+* Definir la infraestructura para logiing
+     * Tratar de centralizar uno o pocos log workspace
+          * Ojo con tener muchos, generalmente no esta asociado a una buena practica
+          * Excepcion de logs especificos de cargas de trabajo (igual uno por carga de traba)
+          * Excepcion considerar el tema de separar logs por regiones de ultima
+     * Tener un Resoruce Group para logiing es una practica habitual
+          * Porque no un MG en el MG de platform <<
+          * Porque no una subscripcion especial para lo de logiing <<
+* Definir la meotodologia de logging
+     * Que vamos a mirar
+     * Objetivo
+     * Cuando
+          * En que momento quiero grabar logs para optimizar costos
+* Definir estrategias de repuesta ante situaciones que puedan pasar
+     * Configurar las alertas
+
+
+* Consideraciones y Buenas practicas
+     * Salvo el activity Log de cada Recursos los Logs operacionales no se guardan por si solos en el log analitics
+          * Tengo que hacerlo explicitamente
+          * 
+<img width="1824" height="241" alt="image" src="https://github.com/user-attachments/assets/9f0d49dc-dd07-4447-98da-d21adc14a4ca" />
+
+     * La ingesta de logs no es costosa de por si pero la cantidad de logs se dispara exponencialmente
+     * A niveo operacional el Activity Log a nivel subscripcion es un buen lugar para estar atento << Es gratis
+     * La ingesta de logs (el tiempo que tarda en aparecer en mi log analytics) no es inmediata (puede tardar 1-10 minutos)
+     * Si neesito analizar logs en Casi Real Time voy a usar Event Hub
+
 ### Tipo de Monitorio
 
 * Monitoreo de Seguridad
@@ -95,6 +125,18 @@
   * Log Individual de Cada Servicio
 
 <img width="758" height="670" alt="image" src="https://github.com/user-attachments/assets/993a25f3-018c-4f48-aec7-f614a239c4fb" />
+
+
+## Caso de Estudio (Logging en tiempo Real)
+
+* Actualmente se guarda el Activity Log de la subscripcion en un workspace
+* Se observa que hay oepraciones criticas que hace un usuario y necesito enterarme y responder justo en el momento que las realiza
+
+<img width="745" height="187" alt="image" src="https://github.com/user-attachments/assets/7915af37-d126-4512-b7e3-1c2d86639d4a" />
+
+* Propuesta
+
+<img width="905" height="341" alt="image" src="https://github.com/user-attachments/assets/7eba3473-2186-4efa-ae2d-332fcbfc8051" />
 
 
 # Buisiness Conuity 
