@@ -261,6 +261,19 @@
 
 # Buisiness Conuity 
 
+* Estrategia de Disaster Recovery
+    * Azure Site Recovery
+        * Para failovers de por ejemplo una catastrofe que se cae toda la region
+* Almacenamiento
+    * Storage Accounts
+        * Soft Delete
+    * Key Vault
+        * Soft Delete
+        * Purge Protection
+* VM
+    * Azure Backup
+    * Recovery Service Vault   << Almacenamiento de backups y unidad de gestion
+
 # Migracion (CAF) - Tools
 
 * Azure Migration Framework
