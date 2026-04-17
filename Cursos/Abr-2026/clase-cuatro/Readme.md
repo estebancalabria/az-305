@@ -242,19 +242,70 @@
 * Buena practica
     * Identificar Logueos riesgosos en la opcion de "Identity Protection"
 
+### Caso 7 : Un usuario nuevo con cara de bueno
+
+* Situacion Actual:
+    * Entra un empleado a la empresa y tiene cara de bueno y confiable
+    * Ademas sabe mucho de Azure y parece ser un referente del tema
+    * El administrador le crea un usuario en el EntraID con el rol de Contributor
+* Buenas practicas
+    * Hay que relevar bien cuales var a ser sus roles y que permisos exactos necesitan
+    * Zero Trust
+        * Cada request es verificado exhaustivamente antes de dar permiso
+        * Aplicar el pricipio Least Prvilege Access : Darle el acceso que necesita, ni mas ni menos
+     
+
 ### Configuracion del Defender
 
 * Evaluar periodicamente la recomendaciones del Defender
 
 # Buisiness Conuity 
 
-# Migracion (WAF) - Tools
+# Migracion (CAF) - Tools
 
-# IA 
+* Azure Migration Framework
+    * Evaluacion
+        * Calculadora de Costos
+            * https://azure.microsoft.com/en-us/pricing/calculator/
+    * Migracion
+        * Azure Migrate
+            * https://learn.microsoft.com/en-us/azure/migrate/concepts-assessment-overview?view=migrate
+        * App Service Miragion assistant
+            * https://learn.microsoft.com/es-es/azure/app-service/app-service-asp-net-migration
+        * Asitente de migracion de SQL
+            * https://learn.microsoft.com/es-es/sql/ssma/sql-server-migration-assistant?view=sql-server-ver17
+        * Base de Datos
+            * Azure Database Migration Service (En Azure)
+        * Almacenamiento
+            * Azure Storage Explorer
+            * AzCopy
+            * Azure Storage Mover
+                * https://learn.microsoft.com/es-es/azure/storage-mover/service-overview
+            * Azure Data Box
+                * https://azure.microsoft.com/es-es/products/databox
+    * Optimizacion
+    * Monitoreo
+        * Windows
+            * Azure Monitor Agent
+                * Te permite integrar logs del sistema operativo dentro de tu Log analytics Workspace
+                    * https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-overview
+                    * https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal
+
 
 # Tips Certificacion
 
 * Deacoplar, Cuello de Botella   ======>     (Bottleneck)Service Bus/Queues 
 * Carga Variable/Impredecible    ======>     Serverless
-* Mandar Mails ====> Logic Apps  ======>     SendGrid (La tecnologia de MS en Azure para mandar mails)
-* Real Time  =====> Event Hub
+* Mandar Mails ====>     Logic Apps  ======>     SendGrid (La tecnologia de MS en Azure para mandar mails)
+* Real Time    =====>    Event Hub
+* Tip          ========> Darlo en Ignes
+
+* Preguntas
+    * Varias Respuestas
+    * Drag and Drop
+    * Completar un combot
+* Caso de Estudio   << Dejar al menos 15 minutos para esto!...
+    * Preguntas
+
+* Link para rendir
+    * https://learn.microsoft.com/en-us/credentials/certifications/exams/az-305/
