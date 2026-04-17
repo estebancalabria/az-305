@@ -56,6 +56,7 @@
           * Ojo con tener muchos, generalmente no esta asociado a una buena practica
           * Excepcion de logs especificos de cargas de trabajo (igual uno por carga de traba)
           * Excepcion considerar el tema de separar logs por regiones de ultima
+          * Ojo que el portal suele contradecir esa buena practica es recomendable asesgurarla con unas policy
      * Tener un Resoruce Group para logiing es una practica habitual
           * Porque no un MG en el MG de platform <<
           * Porque no una subscripcion especial para lo de logiing <<
