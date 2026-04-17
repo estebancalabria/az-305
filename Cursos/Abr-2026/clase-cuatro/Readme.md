@@ -296,6 +296,8 @@
                 * https://learn.microsoft.com/es-es/azure/storage-mover/service-overview
             * Azure Data Box
                 * https://azure.microsoft.com/es-es/products/databox
+            * Azure File Sync
+                * https://kahoot.it/?pin=7442271&refer_method=link
     * Optimizacion
     * Monitoreo
         * Windows
