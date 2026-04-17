@@ -117,21 +117,20 @@
 * Lenguaje de Consulta
   * KQL
 * Application Insights
-  * SDK (para devs)
-  * Monitoring pre Condigurado
-  * Tableros y Vistas Ya armados
 * Azure Workbook
   * Visualizacion y Dashboards
 * Activity Log
   * Log Individual de Cada Servicio
+* Network Watcher
 
 <img width="758" height="670" alt="image" src="https://github.com/user-attachments/assets/993a25f3-018c-4f48-aec7-f614a239c4fb" />
 
 
-## Caso de Estudio (Logging en tiempo Real)
+## Caso de Estudio (Logging en tiempo Real Operativo)
 
 * Actualmente se guarda el Activity Log de la subscripcion en un workspace
 * Se observa que hay oepraciones criticas que hace un usuario y necesito enterarme y responder justo en el momento que las realiza
+* CASO EXCLUSIVO PARA LOGS OPERACIONALES
 
 <img width="745" height="187" alt="image" src="https://github.com/user-attachments/assets/7915af37-d126-4512-b7e3-1c2d86639d4a" />
 
@@ -139,6 +138,113 @@
 
 <img width="905" height="341" alt="image" src="https://github.com/user-attachments/assets/7eba3473-2186-4efa-ae2d-332fcbfc8051" />
 
+## Monitoreo de Apps
+
+* Application Insights
+   * SDK (para devs)
+   * Monitoring pre Condigurado
+   * Tableros y Vistas Ya armados
+   * **Live Motrics: Monitoreo en tiempo Real**
+
+## Monitoreo de Redes
+
+* Network Watcher
+    * Topology
+        * Grafico de toda la Red
+    * Connection Montor
+        * Creas un monitor que evalua latecia, disponibilidad,
+    * IP Flow Verify
+        * Es como un test-connection para chequear de forma rapido una conexion
+    * NSG diagnostics
+        * Detalla para una conexion que reglase del NSG aplican
+    * ...
+
+# EntraID y Monitoreo de Usuarios
+
+## Caso de Estudio 
+
+### Caso 1 : Integracion Cloud-On-Premise
+
+* Situacion Actual
+    * Tengo un Active Directory On Premise y Un entorno Azure. Tengo doble esfuerzo de Mantenimiento
+* Buena Practica
+    * No es necesario dejar el AD Local pero si utilizar una herramienta que los mantenga sincronizado
+    * Entra ID connect
+ 
+### Casoo 2 : Usuario Externo
+
+* Situacion Actual
+    * Tengo un usuario que viene de otra empresa y necesito darle persmisos para que utilize mi entorno Azure
+    * El administrador de usuarios le crea un usauario nuevo (con create User) en Azure y ahi administra el RBAC
+* Buena Practica
+    * No crear usuarios nuevos de organizaciones externa sino usar el Entra B2B Connect para invitarlo
+    * Solo con su correo
+    * El usuario mantiene su usuario y su passowrd
+ 
+
+### Caso 3 : Usuario que se va de la empresa
+
+* Situacion Actual
+    * Los usuarios que se van de la empresa quedan en el Active Directory
+* Buena practica
+    * Implementar un offboarding process
+        * Desabilitar el usuario
+        * Revoke de Sign Session
+        * VPN
+        * https://learn.microsoft.com/en-us/entra/id-governance/tutorial-scheduled-leaver-portal
+        * Automatizar el proceso de OffBoaring con el Lifecycle workflows
+    * Hacer "Acces Reviews" detntro de la parte de "Identity Governance" periodicos
+      
+* Situacion Actual
+    * Tengo 10 aplicaciones y se hace engorro darle de baja en casa una de las 10 aplicaciones
+    * Cada aplicacion tiene su propio login con su propia logica de login
+* Buena Practica
+    * Implementar autenticacion usando SSO con el entra para no tener que multiplicar el esfuerzo de manteniminto
+
+## Caso 4 : Usuario que necesita permidos o accesos
+
+* Situacion Actual
+    * Un usuario que trabaja en un proyecto necesita permisos que no tiene para realizar una tarea X
+    * El administrador le da permisos al usuario (y se anota en un postit para acordarse de revocarselos mas adelantes)
+* Buena practica
+    * Habilito al usuario permisos temporalmente mediante el PIM
+ 
+* Situacion Actual
+    * Un usuario se conecta a una VM unas pocas horas en horario de oficila
+    * La VM no se apaga (hace algo critico)
+    * El puerto de la VM esta expuesto a ataques por fuerza bruta todo el tiempo en Internet
+* Buena Practica
+    * Configurar el JIT (Just In Time) access para la VM por tiempo limitao cuando lo necesita con control
+    * https://learn.microsoft.com/es-es/azure/defender-for-cloud/enable-just-in-time-access
+    * Otras Akternativas : VPN, JAM server, etc...
+
+## Caso 5 : Usuario que necesita varios permisos
+
+* Situacion Actual
+    * Un usuario necesita permisos para acceder a una seri de recursos y aplicaciones
+    * Esos mismos requerimientos se suelen repetir para distintos usuarios
+    * El administrador se pasa toda una tarde asignando los permisos
+* Buenar  practicas
+    * Configurar un Access Package y manejarlo como una unica asignacion
+ 
+### Casos 6 : Usuarios que se conectan de distintos lugares
+
+* Situacion Actual
+    * Los usuarios se conectan al portal desde muchas ubicaciones distintas
+    * Alguna vez un usuario que se le rompio la computadora fue al cybercafe y dejo abierto el portal de azure y se metio un curioso e hizo lio
+* Buena Practica
+    * Configurar el cotional Access para
+    * Habilitar MFA para dispositivos y ubicaciones desconoidas
+    * Configurar la persistencia de sesion
+
+* Situacion Actual
+    * Investigando los logins se observan conexiones desde paises de Europa del Este y mi empresa esta en LATAM
+* Buena practica
+    * Identificar Logueos riesgosos en la opcion de "Identity Protection"
+
+### Configuracion del Defender
+
+* Evaluar periodicamente la recomendaciones del Defender
 
 # Buisiness Conuity 
 
